@@ -2,17 +2,14 @@ package com.example.coolweather.db;
 
 import android.provider.ContactsContract;
 
-import org.litepal.exceptions.DataSupportException;
+import org.litepal.crud.LitePalSupport;
 
-public class County extends DataSupportException {
+public class County extends LitePalSupport {
     private int id;
     private String countyName;
     private String weatherId;
     private int cityId;
 
-    public County(String errorMessage) {
-        super(errorMessage);
-    }
 
     public int getId() {
         return id;

@@ -1,21 +1,18 @@
 package com.example.coolweather.db;
 
-import org.litepal.exceptions.DataSupportException;
+import org.litepal.crud.LitePalSupport;
 
-public class City extends DataSupportException {
+public class City extends LitePalSupport {
     private int id;
     private String cityName;
     private int cityCode;
     private int provinceId;
 
-    public City(String errorMessage) {
-        super(errorMessage);
-    }
 
     public int getId() {
         return id;
     }
-    public void setId() {
+    public void setId(int id) {
         this.id = id;
     }
     public String getCityName() {
