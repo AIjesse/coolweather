@@ -85,7 +85,7 @@ public class WeatherActivity extends AppCompatActivity {
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         drawerLayout = findViewById(R.id.drawer_layout);
         navButton = findViewById(R.id.nav_button);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String weatherString = prefs.getString("weather",null);
         if (weatherString != null) {
             //有缓存时直接解析天气数据
@@ -101,7 +101,10 @@ public class WeatherActivity extends AppCompatActivity {
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                requestWeather(mWeatherId);
+                String refreshWeatherString = prefs.getString("weather",null);
+                Weather refreshWeather = Utility.handleWeatherResponse(refreshWeatherString);
+                String refreshWeatherId = refreshWeather.basic.weatherId;
+                requestWeather(refreshWeatherId);
             }
         });
         String bingPic = prefs.getString("bing_pic",null);
